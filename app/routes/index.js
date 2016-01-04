@@ -1,8 +1,7 @@
 'use strict';
 
 var path = process.cwd();
-var ClickHandler = require(path + '/app/controllers/clickHandler.server.js');
-
+var clickHandlerFactory = require(path + '/app/controllers/clickHandler.server.js');
 module.exports = function (app, passport) {
 
 	function isLoggedIn (req, res, next) {
@@ -13,7 +12,7 @@ module.exports = function (app, passport) {
 		}
 	}
 
-	var clickHandler = new ClickHandler();
+	var clickHandler = clickHandlerFactory();
 
 	app.route('/')
 		.get(isLoggedIn, function (req, res) {
