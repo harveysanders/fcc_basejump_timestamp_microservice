@@ -1,7 +1,7 @@
 'use strict';
 
 var path = process.cwd();
-var timestampHandlerFactory = require(path + '/app/controllers/timestampHandler.server.js');
+var requestHandlerFactory = require(path + '/app/controllers/requestHandler.server.js');
 module.exports = function (app, passport) {
 
 	function isLoggedIn (req, res, next) {
@@ -12,15 +12,16 @@ module.exports = function (app, passport) {
 		}
 	}
 
-	var timestampHandler = timestampHandlerFactory();
+	var requestHandler = requestHandlerFactory();
 
 	app.route('/')
-		.get(function (req, res) {
-			res.sendFile(path + '/public/index.html');
-		});
+		.get(requestHandler.headerParser);
+		// .get(function (req, res) {
+		// 	res.sendFile(path + '/public/index.html');
+		// });
 
-	app.route('/:timeString')
-		.get(timestampHandler.getTime);
+	// app.route('/:timeString')
+	// 	.get(timestampHandler.getTime);
 
 	app.route('/login')
 		.get(function (req, res) {
