@@ -37,7 +37,6 @@ function clickHandler () {
 				);
 		},
 	};
-
 }
 
 module.exports = clickHandler;

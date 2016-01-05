@@ -1,5 +1,4 @@
 'use strict';
-
 var path = process.cwd();
 var requestHandlerFactory = require(path + '/app/controllers/requestHandler.server.js');
 module.exports = function (app, passport) {
